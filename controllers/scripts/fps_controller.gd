@@ -11,6 +11,7 @@ extends CharacterBody3D
 @onready var weaponController : WeaponController = $CameraController/Camera3D/WeaponRig/Weapon
 @onready var hud = $UserInterface
 @onready var animationPlayer = $"Level Fade"
+@onready var stateMachine = $PlayerStateMachine
 
 var _mouse_input : bool = false
 var _rotation_input : float
@@ -84,9 +85,9 @@ func _physics_process(delta):
 	if not is_multiplayer_authority(): return
 	# Update camera movement based on mouse movement
 	_update_camera(delta)
-	
-	if stamina < 101:
-		stamina += 16.5 * delta
+	Global.debug.addProperty("Stamina", stamina, 2)
+	if stamina < 101 and stateMachine.currentState != $PlayerStateMachine/SprintingPlayerState:
+		stamina += ceil(16.5 * delta)
 	
 	
 	## Add the gravity.
@@ -108,11 +109,11 @@ func updateInput(speed: float, acceleration: float, deceleration: float) -> void
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
+	var weightedSpeed = clamp(speed - (weaponGlobal.inventoryWeight / 2), 0.5, 10000)
 	
 	if direction:
-		velocity.x = lerp(velocity.x,direction.x * speed, acceleration)
-		velocity.z = lerp(velocity.z,direction.z * speed, acceleration)
+		velocity.x = lerp(velocity.x,direction.x * weightedSpeed, acceleration)
+		velocity.z = lerp(velocity.z,direction.z * weightedSpeed, acceleration)
 	else:
 		velocity.x = move_toward(velocity.x, 0, deceleration)
 		velocity.z = move_toward(velocity.z, 0, deceleration)

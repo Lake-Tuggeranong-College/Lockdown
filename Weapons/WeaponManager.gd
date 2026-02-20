@@ -113,7 +113,6 @@ func addWeapon(WeaponPath: String, defaultStats: bool, clip: int, reserve: int):
 				weaponGlobal.weaponAmmoInventory[weaponGlobal.currentWeaponIndex] = [weapon.clip, weapon.reserve]
 			else:
 				weaponGlobal.weaponAmmoInventory[weaponGlobal.currentWeaponIndex] = [clip, reserve]
-	
 	loadWeapon()
 	Global.updateLabels(weaponGlobal.clipAmmo, weaponGlobal.reserveAmmo) 
 
@@ -161,6 +160,9 @@ func loadWeapon():
 	weaponBolt.mesh = weaponType.bolt
 	weaponShadow.mesh = weaponType.mesh
 	weaponGlobal.weaponBulletPhysics = weaponType.bulletPhysics
+	#Weapon Weights need to be persistent across whole inventory
+	#with += it infinetly adds weight if swapping weapons
+	weaponGlobal.inventoryWeight = weaponType.weight
 	
 	#Checks if the projectile based weapon has a scene, otherwise skips loading it
 	if !Engine.is_editor_hint():
@@ -292,10 +294,10 @@ func shoot() -> void:
 			else:
 				#Single hitscan shot
 				var hitBody = castBulletRay()
-				if hitBody and hitBody.has_method("take_damage") or hitBody.has_method("take_enemy_damage"):
+				if hitBody and hitBody != null:
 					if hitBody.has_method("take_enemy_damage"):
 						hitBody.take_enemy_damage(weaponType.Damage, "bullet")
-					else:
+					elif hitBody.has_method("take_damage"):
 						hitBody.take_damage.rpc_id(hitBody.get_multiplayer_authority(), weaponType.Damage, "bullet")  # Deal damage to the enemy
 
 		#If the weapon is a projectile weapon then shoot a projectile not a raycast
@@ -440,6 +442,7 @@ func dropWeapon():
 		dropInstance.setWeapon(currentWeapon)
 		dropInstance.setModel(currentWeapon)
 		dropInstance.parseAmmo(currentClip, currentReserve)
+		weaponGlobal.inventoryWeight -= weaponType.weight
 		
 		#This is for a specific weapon, however can be removed or changed
 		if weaponType == load("res://Weapons/Soul Knife.tres"):
