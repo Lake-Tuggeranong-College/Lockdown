@@ -40,6 +40,7 @@ var currentWeaponIndex : int = 0
 var shotgun
 var fireMode
 var reloadMode
+var inventoryWeight = 0
 
 var verticalRecoil
 var horizontalRecoil

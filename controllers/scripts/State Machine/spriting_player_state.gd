@@ -18,7 +18,7 @@ func update(delta):
 	PLAYER.updateInput(speed, acceleration, deceleration)
 	PLAYER.updateVelocity()
 	setAnimationSpeed(PLAYER.velocity.length())
-	
+	PLAYER.stamina -= 0.25
 	weapon.sway_weapon(delta, false)
 	weapon.weaponBob(delta, weaponBobSpeed, weaponBobH, weaponBobV)
 	
@@ -40,6 +40,10 @@ func update(delta):
 
 	if Input.is_action_just_pressed("shoot"):
 		weapon.shoot()
+		
+	if PLAYER.stamina <= 1:
+		transition.emit("WalkingPlayerState")
+
 func setAnimationSpeed(spd):
 	var alpha = remap(spd, 0.0, speed, 0.0, 1.0)
 	animation.speed_scale = lerp(0.0, topAnimSpeed, alpha)
