@@ -291,7 +291,6 @@ text = "aaaawagga"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.567147, 0.625, -0.56337714)
 
 [node name="PauseLayer" type="CanvasLayer" parent="." unique_id=957366646]
-visible = false
 
 [node name="PausePanel" type="Panel" parent="PauseLayer" unique_id=912028623]
 anchors_preset = 8

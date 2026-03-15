@@ -13,7 +13,6 @@ extends CharacterBody3D
 @onready var animationPlayer = $"Level Fade"
 @onready var playerlabelname = $testNameLabel
 @onready var stateMachine = $PlayerStateMachine
-
 var _mouse_input : bool = false
 var _rotation_input : float
 var _tilt_input : float
@@ -25,7 +24,6 @@ var isCrouching : bool = false
 var currentRotation : float
 var cameraOffset : Vector3
 
-var isPaused : bool = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravity = 12
@@ -101,9 +99,7 @@ func _physics_process(delta):
 	CAMERA_CONTROLLER.rotation = lerp(CAMERA_CONTROLLER.rotation, CAMERA_CONTROLLER.rotation + cameraOffset, 0.1)
 	cameraOffset = lerp(cameraOffset, Vector3(0,0,0), 0.05)
 	
-	if Input.is_action_just_pressed("PauseMenu"):
-		deboggled()
-		
+
 func updateGravity(delta) -> void:
 	if not is_multiplayer_authority(): return
 	velocity.y -= gravity * delta
@@ -140,14 +136,7 @@ func take_damage(damage, type, team):
 			Global.playerHealth = 100
 
 #Pausing system
-func deboggled(): #this probably isnt the best way to do this but it works
-	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE #Un-captures the mouse
-		isPaused = true
-	elif Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED #Re-captures the mouse
-		isPaused = false
-	print(str(isPaused))
+
 
 #THIS NEEDS UPDATING TO NEW UI PLEASE
 #WILL BE ANNOUNCEMENT TEXT NOT LEVEL CHANGE

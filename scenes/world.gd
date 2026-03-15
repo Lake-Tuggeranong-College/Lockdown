@@ -4,14 +4,14 @@ extends Node
 @onready var address_entry = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/AddressEntry
 @onready var hud = $UserInterface
 @onready var myIDref = multiplayer.get_unique_id()
-@onready var pause_Menu = $PausePanel
 @onready var Player = preload("res://controllers/fps_controller.tscn")
 #@onready var Player = $Player
+@onready var pauseHUD = $PauseLayer
 var tracked = false
 var player
 var teams = {} # peer_id -> "Cop" or "Robber"
 var playercount = 0
-
+var isPaused : bool = false
 const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
 
@@ -63,7 +63,13 @@ func _ready() -> void:
 	Global.healthLabel = %Health
 
 func _physics_process(delta):
-	pass
+	if Input.is_action_just_pressed("PauseMenu"):
+		deboggled()
+		
+	if isPaused == true:
+		pauseHUD.visible = true
+	elif isPaused == false:
+		pauseHUD.visible = false
 	#if tracked:
 		#get_tree().call_group("enemy", "update_target_location", player.global_transform.origin)
 
@@ -136,3 +142,12 @@ func receive_team_assignment(id, team):
 	if id == multiplayer.get_unique_id():
 		print("I am on team: ", team)
 		Global.myCurrentTeam = team
+		
+func deboggled(): #this probably isnt the best way to do this but it works
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE #Un-captures the mouse
+		isPaused = true
+	elif Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED #Re-captures the mouse
+		isPaused = false
+	print(str(isPaused))
