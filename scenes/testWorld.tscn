@@ -9,7 +9,7 @@
 [ext_resource type="LabelSettings" uid="uid://dskxen8j6183q" path="res://controllers/materials/Ammo Counter Label Settings.tres" id="7_ftq4a"]
 [ext_resource type="LabelSettings" uid="uid://ymbpk3yphr8i" path="res://controllers/materials/InteractionLabelSettings.tres" id="8_8b5ia"]
 [ext_resource type="PackedScene" uid="uid://dyf8bobfk30yv" path="res://scenes/Item pedestal.tscn" id="9_lwfgy"]
-[ext_resource type="Theme" uid="uid://b4n6esmn2elnd" path="res://Themes/PauseMenuTheme.tres" id="10_r1245"]
+[ext_resource type="Theme" uid="uid://b4n6esmn2elnd" path="res://controllers/Themes/PauseMenuTheme.tres" id="10_r1245"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u5pdl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
