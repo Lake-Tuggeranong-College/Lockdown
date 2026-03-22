@@ -10,7 +10,6 @@ config_version=5
 
 [application]
 
-config/name="MultiplayerFPSTemplate"
 config/tags=PackedStringArray("multiplayer")
 run/main_scene="res://scenes/testWorld.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
