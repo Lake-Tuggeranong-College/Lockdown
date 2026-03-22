@@ -14,7 +14,7 @@ var weaponBobAmount : Vector2 = Vector2(0,0)
 var weaponBulletPhysics
 var weaponBulletScene
 
-var currentWeaponPath
+#var currentWeaponPath
 
 
 var reserveAmmo:
@@ -40,6 +40,7 @@ var currentWeaponIndex : int = 0
 var shotgun
 var fireMode
 var reloadMode
+var inventoryWeight = 0
 
 var verticalRecoil
 var horizontalRecoil

@@ -17,6 +17,11 @@ extends RigidBody3D
 var weaponWeight = 1
 var weaponReturning = false
 var returning = false
+@export var teamFilter = "Robber"
+
+#Attributes for items
+var isItemTag = false
+
 
 #defaultStats tells the Weapon Manager to use the files default ammo
 #Turning it off will pull the ammo from the values here, which are set when the weapon is dropped.
@@ -24,6 +29,7 @@ var returning = false
 func _ready():
 	if weaponPath != null:
 		setModel(weaponPath)
+		
 
 
 func update():
@@ -58,7 +64,8 @@ func setModel(weaponType):
 	weaponReturning = loadedWeapon.returnThrownForce
 	weaponParent.scale = loadedWeapon.scale
 
-
+func setTeam(team):
+	teamFilter = team
 
 func changeVel(vel):
 	apply_impulse(vel)
@@ -72,6 +79,14 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			returning = true
 		body.take_damage(roundi(hitVelocity * (2 + weaponWeight)), "throw")
 
+
+func setAttribute(attribute, value):
+	#Add attributes to item here, incase we need more properties
+	match attribute:
+		"isItem":
+			isItemTag = true
+	
+	
 
 func _physics_process(delta: float) -> void:
 	if returning:

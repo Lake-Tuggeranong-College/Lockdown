@@ -22,6 +22,8 @@ var healthLabel: Label
 var interactionLabel: Label
 var player_name : String = "test"
 
+var myCurrentTeam : String
+
 func updateLabels(clipAmmo, reserveAmmo):
 	clipLabel.text = str(clipAmmo)
 	reserveLabel.text = str(reserveAmmo)
@@ -53,18 +55,9 @@ func _process(delta):
 	pass
 
 
+#This function is for adding things to in game debug menu
+#Format:
+#Global.debug.addProperty("Display Name", Variable, Position on debug board)
 
-#Dropped weapon carry over between levels
-#Possible new mechanic where you can drop weapons for later levels to pick up
-#Might make clutter
-
-#Thrown Weapons can deal damage at fast speeds #IMPLEMENTED
-
-#Enemy that turns to face player. Charges then dashes in the direciton, can be chaotic
-#With many dashing around trying to hit you
-#MAKE LEVEL WITH JUST THESE THIS WILL BE SO FUN OMG
-
-#Fast Enemy #IMPLEMENTED
-#More weapons
-#Button/switch with Door
-#Enemy spawner (Destroyable)
+#Example formatting
+#Global.debug.addProperty("Stamina", stamina, 2)
