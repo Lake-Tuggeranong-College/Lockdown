@@ -31,7 +31,6 @@ var gravity = 12
 var stamina = 100
 
 func _enter_tree():
-	print(name)
 	set_multiplayer_authority(str(name).to_int())
 
 func _ready():
@@ -148,7 +147,6 @@ func updateVelocity() -> void:
 
 @rpc("any_peer")
 func take_damage(damage, type, team):
-	print(team)
 	if team != Global.myCurrentTeam:
 
 		Global.playerHealth -= damage

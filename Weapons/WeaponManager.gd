@@ -223,7 +223,6 @@ func loadWeapon():
 		weaponGlobal.weaponAccuracy = weaponType.Accuracy
 		weaponGlobal.verticalRecoil = weaponType.verticalRecoil
 		weaponGlobal.horizontalRecoil = weaponType.horizontalRecoil
-		print(weaponGlobal.weaponInventory[weaponGlobal.currentWeaponIndex])
 		Global.rpc("replicateSpecificObject", str(get_path()), "replicateWeaponVisual", weaponGlobal.weaponInventory[weaponGlobal.currentWeaponIndex])
 		
 		

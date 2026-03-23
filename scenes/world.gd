@@ -114,7 +114,6 @@ func assign_team(id):
 		Global.myCurrentTeam = team
 		Global.player.updatePlayerModel()
 	rpc("receive_team_assignment", id, team)
-
 	spawn_player(id, team)
 
 
@@ -137,9 +136,16 @@ func receive_team_assignment(id, team):
 
 	teams[id] = team
 
-	print("Synced: Player ", id, " is ", team)
-
 	if id == multiplayer.get_unique_id():
 		Global.myCurrentTeam = team
 		Global.player.updatePlayerModel()
-	
+		
+	var player = get_node(str(id))
+	var spawn_point
+
+	if team == "Cop":
+		spawn_point = cop_spawns.pick_random()
+	else:
+		spawn_point = robber_spawns.pick_random()
+
+	player.global_position = spawn_point.global_position
