@@ -92,6 +92,9 @@ func _update_camera(delta):
 	_tilt_input = 0.0
 
 
+
+
+
 func _physics_process(delta):
 
 	if not is_multiplayer_authority():
@@ -106,10 +109,14 @@ func _physics_process(delta):
 		stamina += ceil(16.5 * delta)
 
 	playerlabelname.text = str(multiplayer.get_unique_id())
-
+	
+	
+	## Add the gravity.
+	#if not is_on_floor():
+		#velocity.y -= gravity * delta
 	CAMERA_CONTROLLER.rotation = lerp(CAMERA_CONTROLLER.rotation, CAMERA_CONTROLLER.rotation + cameraOffset, 0.1)
-	cameraOffset = lerp(cameraOffset, Vector3.ZERO, 0.05)
-
+	cameraOffset = lerp(cameraOffset, Vector3(0,0,0), 0.05)
+	
 
 func updateGravity(delta) -> void:
 
@@ -161,6 +168,9 @@ func updatePlayerModel():
 		copModel.visible = true
 	elif Global.myCurrentTeam == "Robber":
 		robberModel.visible = true
+#Pausing system
+
+
 #THIS NEEDS UPDATING TO NEW UI PLEASE
 #WILL BE ANNOUNCEMENT TEXT NOT LEVEL CHANGE
 #func showLevelText(spawnText):
