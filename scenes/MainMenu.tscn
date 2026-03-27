@@ -1,28 +1,55 @@
 [gd_scene format=3 uid="uid://p0ufc8rwywy3"]
 
-[ext_resource type="Texture2D" uid="uid://1gnfo8brik1i" path="res://addons/kenney_particle_pack/star_07.png" id="1_yqorp"]
-[ext_resource type="Texture2D" uid="uid://dynesin1efiwk" path="res://addons/kenney_particle_pack/star_04.png" id="2_0ykhv"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2wh52"]
-particle_flag_disable_z = true
-initial_velocity_min = 381.72
-initial_velocity_max = 381.72
-gravity = Vector3(0, 0, 0)
+[ext_resource type="Script" uid="uid://bakqjv8uh0jyx" path="res://scenes/main_menu.gd" id="1_0ykhv"]
+[ext_resource type="Theme" uid="uid://dfvf6hx2xcliy" path="res://controllers/Themes/MainMenu.tres" id="1_yqorp"]
 
 [node name="MainMenu" type="Node2D" unique_id=1543144528]
+script = ExtResource("1_0ykhv")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1300629275]
-position = Vector2(615, 319)
-texture = ExtResource("1_yqorp")
+[node name="Menubuttons" type="VBoxContainer" parent="." unique_id=1948515570]
+offset_left = 23.0
+offset_top = 22.0
+offset_right = 354.0
+offset_bottom = 625.0
 
-[node name="Label" type="Label" parent="." unique_id=412822943]
-offset_left = 680.0
-offset_top = 261.0
-offset_right = 786.0
-offset_bottom = 284.0
-text = "WOOOOOOW"
+[node name="Singleplayer" type="Button" parent="Menubuttons" unique_id=1285068060]
+layout_mode = 2
+theme = ExtResource("1_yqorp")
+text = "Singleplayer"
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1890743867]
-position = Vector2(241, 201)
-texture = ExtResource("2_0ykhv")
-process_material = SubResource("ParticleProcessMaterial_2wh52")
+[node name="MultiplayerHost" type="Button" parent="Menubuttons" unique_id=1693817645]
+layout_mode = 2
+theme = ExtResource("1_yqorp")
+text = "Host"
+
+[node name="LineBreak" type="Control" parent="Menubuttons" unique_id=783837631]
+custom_minimum_size = Vector2(5, 20)
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="Menubuttons" unique_id=830896555]
+layout_mode = 2
+theme = ExtResource("1_yqorp")
+placeholder_text = "Input IP Address..."
+alignment = 1
+
+[node name="Button" type="Button" parent="Menubuttons" unique_id=358674544]
+layout_mode = 2
+theme = ExtResource("1_yqorp")
+text = "Join"
+
+[node name="AnotherLineBreak" type="Control" parent="Menubuttons" unique_id=335253692]
+custom_minimum_size = Vector2(5, 20)
+layout_mode = 2
+
+[node name="Settings" type="Button" parent="Menubuttons" unique_id=74679883]
+layout_mode = 2
+theme = ExtResource("1_yqorp")
+text = "Settings"
+
+[node name="Exit" type="Button" parent="Menubuttons" unique_id=698618489]
+layout_mode = 2
+size_flags_vertical = 10
+theme = ExtResource("1_yqorp")
+text = "Quit Game"
+
+[connection signal="pressed" from="Menubuttons/Exit" to="." method="_on_exit_pressed"]
