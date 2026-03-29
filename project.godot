@@ -2,8 +2,8 @@ config_version=5
 
 [application]
 
-config/name="lockdown"
-config/tags=PackedStringArray("multiplayer")
+config/name="Lockdown"
+config/tags=PackedStringArray("2026", "multiplayer")
 run/main_scene="res://scenes/testWorld.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://el1jrwdua5i0"
