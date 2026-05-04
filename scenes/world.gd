@@ -5,7 +5,7 @@ extends Node
 @onready var hud = $UserInterface
 @onready var myIDref = multiplayer.get_unique_id()
 
-@onready var GUI = $GUItasktest
+@onready var GUI = $GUIwindow
 @onready var GUI_viewport = %SubViewport
 @export var GUI_window: Window 
 
