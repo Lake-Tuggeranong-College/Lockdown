@@ -67,12 +67,7 @@ func upnp_setup():
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("PauseMenu"):
-		deboggled()
-		
-	if isPaused == true:
-		pauseHUD.visible = true
-	elif isPaused == false:
-		pauseHUD.visible = false
+		pause()
 	#if tracked:
 		#get_tree().call_group("enemy", "update_target_location", player.global_transform.origin)
 
@@ -192,14 +187,19 @@ func receive_team_assignment(id, team):
 
 	player.global_position = spawn_point.global_position
 		
-func deboggled(): #this probably isnt the best way to do this but it works
+func pause(): #this probably isnt the best way to do this but it works
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE #Un-captures the mouse
 		isPaused = true
 	elif Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED #Re-captures the mouse
 		isPaused = false
+	if isPaused == true:
+		pauseHUD.visible = true
+	elif isPaused == false:
+		pauseHUD.visible = false
 	print(str(isPaused))
+	
 
 
 func _on_guitasktest_pressed() -> void:
