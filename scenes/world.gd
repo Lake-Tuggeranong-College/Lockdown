@@ -20,7 +20,6 @@ var tracked = false
 var player
 var teams = {} # peer_id -> "Cop" or "Robber"
 var playercount = 0
-var isPaused : bool = false
 const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
 
@@ -191,15 +190,15 @@ func receive_team_assignment(id, team):
 func pause(): #this probably isnt the best way to do this but it works
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE #Un-captures the mouse
-		isPaused = true
+		Global.isPaused = true
 	elif Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED #Re-captures the mouse
-		isPaused = false
-	if isPaused == true:
+		Global.isPaused = false
+	if Global.isPaused == true:
 		pauseHUD.visible = true
-	elif isPaused == false:
+	elif Global.isPaused == false:
 		pauseHUD.visible = false
-	print(str(isPaused))
+	print(str(Global.isPaused))
 	
 
 
@@ -211,8 +210,10 @@ func _on_guitasktest_pressed() -> void:
 func _GUI_window_open(_body: Player) -> void:
 	var minitask = preload("res://gameMechanics/hacking_minitask.tscn").instantiate()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE # Release mouse
+	Global.taskMode = true
 	GUI.show()
 	GUI_viewport.add_child(minitask)
 	print("player interacted with minitask")
 	if GUI_window != null:
 		GUI_window.emit_signal("close_requested")
+		Global.taskMode = false
