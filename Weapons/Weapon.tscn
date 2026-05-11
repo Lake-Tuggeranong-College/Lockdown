@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://csj7vcqrenjsi"]
 
 [ext_resource type="Script" uid="uid://barqei8kroiys" path="res://Weapons/WeaponManager.gd" id="1_tj3qj"]
-[ext_resource type="Resource" uid="uid://c7yyvh1pk2h1r" path="res://Weapons/Items/Gem.tres" id="2_vgibi"]
-[ext_resource type="ArrayMesh" uid="uid://ckcxjndffd6si" path="res://items/Item Models/Itemsglb_Gem.res" id="3_habq8"]
+[ext_resource type="Resource" uid="uid://c7yyvh1pk2h1r" path="res://Items/Item Files/Gem.tres" id="2_vgibi"]
+[ext_resource type="ArrayMesh" uid="uid://b5r4ywmmqkix1" path="res://Items/Item Models/Itemsglb_Gem.res" id="3_habq8"]
 
 [node name="Weapon" type="Node3D" unique_id=1183526851]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.2, -0.2)

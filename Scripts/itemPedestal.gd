@@ -2,10 +2,12 @@ extends Node3D
 
 @onready var dropLocation = $"Item Spawn Location"
 var rng = RandomNumberGenerator.new()
-var weaponDrop = preload("res://scenes/Weapon Drop.tscn")
+var weaponDrop = preload("res://Scenes/Weapon Drop.tscn")
 var itemPaths = [
-	"res://Weapons/Items/Goldbar.tres",
-	"res://Weapons/Items/Gem.tres"
+"res://Items/Item Files/Gem.tres",
+"res://Items/Item Files/Goldbar.tres",
+"res://Items/Item Files/Painting.tres"
+
 ]
 
 

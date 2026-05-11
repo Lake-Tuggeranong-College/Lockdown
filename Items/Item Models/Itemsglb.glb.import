@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cqvkpimuan3et"
-path="res://.godot/imported/Itemsglb.glb-82b4cd0f6228e2e9546dff8790df68d8.scn"
+path="res://.godot/imported/Itemsglb.glb-ada9482df1200b942bb51648647e84af.scn"
 
 [deps]
 
-source_file="res://items/Item Models/Itemsglb.glb"
-dest_files=["res://.godot/imported/Itemsglb.glb-82b4cd0f6228e2e9546dff8790df68d8.scn"]
+source_file="res://Items/Item Models/Itemsglb.glb"
+dest_files=["res://.godot/imported/Itemsglb.glb-ada9482df1200b942bb51648647e84af.scn"]
 
 [params]
 
@@ -45,7 +45,7 @@ _subresources={
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://items/Item Models/Itemsglb_Gem.res",
+"save_to_file/fallback_path": "res://Items/Item Models/Itemsglb_Gem.res",
 "save_to_file/path": "uid://b5r4ywmmqkix1"
 },
 "Itemsglb_Goldbar": {
@@ -54,8 +54,17 @@ _subresources={
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://items/Item Models/Itemsglb_Goldbar.res",
+"save_to_file/fallback_path": "res://Items/Item Models/Itemsglb_Goldbar.res",
 "save_to_file/path": "uid://dkcayq0o6u6uv"
+},
+"Itemsglb_Painting": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Items/Item Models/Itemsglb_Painting.res",
+"save_to_file/path": "uid://b5fq3k84tokbk"
 }
 }
 }

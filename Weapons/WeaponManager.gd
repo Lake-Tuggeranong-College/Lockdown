@@ -44,7 +44,7 @@ class_name WeaponController
 
 @export var weaponAnimationPlayer : AnimationPlayer
 
-var weaponDrop = preload("res://scenes/Weapon Drop.tscn")
+var weaponDrop = preload("res://Scenes/Weapon Drop.tscn")
 
 
 
@@ -480,7 +480,19 @@ func replicateWeaponVisual(weaponPath):
 	weaponMagazine.mesh = replicatedWeapon.magazine
 	weaponBolt.mesh = replicatedWeapon.bolt
 	weaponShadow.mesh = replicatedWeapon.mesh
-
+	#Gun Orientation
+	position = replicatedWeapon.position
+	rotation_degrees = replicatedWeapon.rotation
+	scale = replicatedWeapon.scale
+	#Magazine Orientation
+	weaponMagazine.position = replicatedWeapon.magazinePosition
+	weaponMagazine.rotation_degrees = replicatedWeapon.magazineRotation
+	weaponMagazine.scale = replicatedWeapon.magazineScale
+	#Bolt Orientation
+	weaponBolt.position = replicatedWeapon.boltPosition
+	weaponBolt.rotation_degrees = replicatedWeapon.boltRotation
+	weaponBolt.scale = replicatedWeapon.boltScale
+	weaponShadow.visible = replicatedWeapon.shadow
 #This function is for adding ammo to the player, such as a ammo pickup
 func addAmmo(clipAdd, reserveAdd):
 	#Method of adding ammo
@@ -513,7 +525,7 @@ func apply_clip_and_fov_shader_to_view_model(node3d : Node3D, fov_or_negative_fo
 				var base_mat = mesh.surface_get_material(surface_idx)
 				if not base_mat is BaseMaterial3D: continue
 				var weapon_shader_material := ShaderMaterial.new()
-				weapon_shader_material.shader = load("res://shaders/weaponClip.gdshader")
+				weapon_shader_material.shader = load("res://Shaders/weaponClip.gdshader")
 				weapon_shader_material.set_shader_parameter("texture_albedo", base_mat.albedo_texture)
 				weapon_shader_material.set_shader_parameter("texture_metallic", base_mat.metallic_texture)
 				weapon_shader_material.set_shader_parameter("texture_roughness", base_mat.roughness_texture)

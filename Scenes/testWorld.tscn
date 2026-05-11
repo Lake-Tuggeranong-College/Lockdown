@@ -1,18 +1,18 @@
 [gd_scene format=3 uid="uid://c8oqxmm2w2wvv"]
 
-[ext_resource type="Script" uid="uid://demmf2hbrwaat" path="res://scenes/world.gd" id="1_ctiuy"]
-[ext_resource type="PackedScene" uid="uid://c1j7an8woikyd" path="res://scenes/environment.tscn" id="2_fr3vy"]
-[ext_resource type="AudioStream" uid="uid://dbwy7vdmgmifi" path="res://scenes/starostin-crime-heist-investigation-music-259668.mp3" id="3_8b5ia"]
+[ext_resource type="Script" uid="uid://demmf2hbrwaat" path="res://Scenes/world.gd" id="1_ctiuy"]
+[ext_resource type="PackedScene" uid="uid://c1j7an8woikyd" path="res://Scenes/environment.tscn" id="2_fr3vy"]
+[ext_resource type="AudioStream" uid="uid://dbwy7vdmgmifi" path="res://Scenes/starostin-crime-heist-investigation-music-259668.mp3" id="3_8b5ia"]
 [ext_resource type="Script" uid="uid://cw5iw0tdrx43u" path="res://gameMechanics/guitasktest.gd" id="3_ftq4a"]
-[ext_resource type="PackedScene" uid="uid://5k1o5ctvtah6" path="res://scenes/enemy.tscn" id="3_nule3"]
+[ext_resource type="PackedScene" uid="uid://5k1o5ctvtah6" path="res://Scenes/enemy.tscn" id="3_nule3"]
 [ext_resource type="Script" uid="uid://da4bqfupciool" path="res://controllers/reticle.gd" id="4_0ddhe"]
 [ext_resource type="Theme" uid="uid://de2nek577lf7m" path="res://controllers/Themes/UI/Debug.tres" id="5_lwfgy"]
 [ext_resource type="Script" uid="uid://dvspsmhr73myh" path="res://controllers/scripts/debug_panel.gd" id="6_r1245"]
 [ext_resource type="LabelSettings" uid="uid://dskxen8j6183q" path="res://controllers/materials/Ammo Counter Label Settings.tres" id="7_ftq4a"]
 [ext_resource type="LabelSettings" uid="uid://ymbpk3yphr8i" path="res://controllers/materials/InteractionLabelSettings.tres" id="8_8b5ia"]
-[ext_resource type="PackedScene" uid="uid://dyf8bobfk30yv" path="res://scenes/Item pedestal.tscn" id="9_lwfgy"]
+[ext_resource type="PackedScene" uid="uid://dyf8bobfk30yv" path="res://Scenes/Item pedestal.tscn" id="9_lwfgy"]
 [ext_resource type="Theme" uid="uid://b4n6esmn2elnd" path="res://controllers/Themes/PauseMenuTheme.tres" id="10_r1245"]
-[ext_resource type="PackedScene" uid="uid://currrrlwvf71l" path="res://scenes/Item Collection Volume.tscn" id="13_dbplf"]
+[ext_resource type="PackedScene" uid="uid://currrrlwvf71l" path="res://Scenes/Item Collection Volume.tscn" id="13_dbplf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u5pdl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -206,7 +206,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.00742, 1.03476, 0.74423)
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1849368165]
 navigation_mesh = SubResource("NavigationMesh_rmptm")
 
-[node name="Environment" parent="NavigationRegion3D" unique_id=332111882 instance=ExtResource("2_fr3vy")]
+[node name="Environment" parent="NavigationRegion3D" unique_id=1851466389 instance=ExtResource("2_fr3vy")]
 
 [node name="UserInterface" type="Control" parent="." unique_id=499654013]
 unique_name_in_owner = true
