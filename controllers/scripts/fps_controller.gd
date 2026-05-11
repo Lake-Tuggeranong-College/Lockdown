@@ -30,6 +30,7 @@ var cameraOffset : Vector3
 var gravity = 12
 var stamina = 100
 
+var is_interacting: bool = false
 
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
@@ -97,8 +98,12 @@ func _update_camera(delta):
 
 func _physics_process(delta):
 	
-	
 	if not is_multiplayer_authority():
+		return
+	
+	if is_interacting:
+		velocity = Vector3.ZERO
+		move_and_slide()
 		return
 
 	_update_camera(delta)
