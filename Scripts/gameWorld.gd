@@ -71,14 +71,13 @@ func _physics_process(delta):
 		#get_tree().call_group("enemy", "update_target_location", player.global_transform.origin)
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	Global.reserveLabel = %Reserve
 	Global.interactionLabel = %InteractionLabel
 	Global.clipLabel = %Clip
-	Global.pointsLabel = %Points
+	Global.pointsLabel = %TotalValue
 	Global.healthLabel = %Health
-	GUI.hide()
-	print(Input.get_joy_name(0))
+	Global.totalValue = 0
+	spawn_player(multiplayer.get_unique_id(), Global.myCurrentTeam)
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("quit"):
@@ -97,7 +96,7 @@ func add_player(peer_id):
 
 	var player = Player.instantiate()
 	player.name = str(peer_id)
-	add_child(player)
+	get_tree().root.add_child(player)
 
 	player.set_multiplayer_authority(peer_id)
 
@@ -156,7 +155,7 @@ func assign_team(id):
 
 func spawn_player(id, team):
 
-	var player = get_node(str(id))
+	var player = get_tree().root.get_node(str(id))
 
 	var spawn_point
 
