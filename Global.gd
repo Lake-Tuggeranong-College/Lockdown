@@ -66,12 +66,17 @@ func replicateSpecificObject(bodyName, function, arg1):
 	
 func changeScene(sceneString):
 	var players = get_tree().get_nodes_in_group("player")
-	for player in players:
-		player.reparent(get_tree().root, false)
+	for i in players:
+		i.reparent(get_tree().root, false)
+	
 	get_tree().change_scene_to_file(sceneString)
-	players = get_tree().get_nodes_in_group("player")
-	for player in players:
-		player.reparent(get_tree().root.get_node("World"), false)
+	await get_tree().process_frame
+	await get_tree().process_frame 
+	# Very hacky way of waiting two frames to load scene.
+	# Works though
+	
+	for o in players:
+		o.reparent(get_tree().root.get_node("World"), false)
 	#Recursivley gather all players and move them to root node
 	#Change Scene
 	#Move them back in

@@ -1,17 +1,14 @@
 extends Node
 
-@onready var main_menu = $CanvasLayer/MainMenu
-@onready var address_entry = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/AddressEntry
 @onready var hud = $UserInterface
 @onready var myIDref = multiplayer.get_unique_id()
 
-@onready var GUI = $GUIwindow
+@onready var GUI = %GUIwindow
 @onready var GUI_viewport = %SubViewport
 @export var GUI_window: Window 
 
 @onready var Player = preload("res://controllers/fps_controller.tscn")
 #@onready var Player = $Player
-
 @onready var cop_spawns = $SpawnPoints2/Cops.get_children()
 @onready var robber_spawns = $SpawnPoints2/Robber.get_children()
 
@@ -22,31 +19,7 @@ var teams = {} # peer_id -> "Cop" or "Robber"
 var playercount = 0
 const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
-
-
-func _on_host_button_pressed():
-
-	main_menu.hide()
-	hud.show()
-
-	enet_peer.create_server(PORT)
-	multiplayer.multiplayer_peer = enet_peer
-
-	multiplayer.peer_connected.connect(add_player)
-	multiplayer.peer_disconnected.connect(remove_player)
-
-	add_player(multiplayer.get_unique_id())
-
-
-func _on_join_button_pressed():
-
-	main_menu.hide()
-	hud.show()
-	if playercount < 4:
-		enet_peer.create_client(address_entry.text, PORT)
-		multiplayer.multiplayer_peer = enet_peer
-	else:
-		print("TOO MANY PLAYERS!")
+#var debWin = preload("res://Scenes/Debug.tscn")
 
 #func _on_multiplayer_spawner_spawned(node):
 	#if node.is_multiplayer_authority():
@@ -71,32 +44,30 @@ func _physics_process(delta):
 		#get_tree().call_group("enemy", "update_target_location", player.global_transform.origin)
 
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	Global.reserveLabel = %Reserve
 	Global.interactionLabel = %InteractionLabel
 	Global.clipLabel = %Clip
 	Global.pointsLabel = %TotalValue
 	Global.healthLabel = %Health
 	Global.totalValue = 0
-	spawn_player(multiplayer.get_unique_id(), Global.myCurrentTeam)
+	GUI.hide()
+	print(Input.get_joy_name(0))
+	get_viewport().set_embedding_subwindows(false)
+	#var DebugPanel = debWin.instantiate()
+	#add_child(DebugPanel)
+	#DebugPanel.visible = true
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
-
-func _on_single_player_button_pressed():
-
-	main_menu.hide()
-	hud.show()
-
-	var my_id = multiplayer.get_unique_id()
-	add_player(my_id)
 
 
 func add_player(peer_id):
 
 	var player = Player.instantiate()
 	player.name = str(peer_id)
-	get_tree().root.add_child(player)
+	add_child(player)
 
 	player.set_multiplayer_authority(peer_id)
 
@@ -155,7 +126,7 @@ func assign_team(id):
 
 func spawn_player(id, team):
 
-	var player = get_tree().root.get_node(str(id))
+	var player = get_node(str(id))
 
 	var spawn_point
 
@@ -200,19 +171,18 @@ func pause(): #this probably isnt the best way to do this but it works
 	print(str(Global.isPaused))
 	
 
-# player interacting with minitask
-func _GUI_window_open(body: Player) -> void:
+
+func _on_guitasktest_pressed() -> void:
+	get_tree().change_scene_to_file("res://gameMechanics/hacking_minitask.tscn")
+
+
+func _GUI_window_open(_body: Player) -> void:
 	var minitask = preload("res://gameMechanics/hacking_minitask.tscn").instantiate()
-
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE # Release mouse
 	Global.taskMode = true
-	if body.is_multiplayer_authority():
-		var player_group = get_tree().get_first_node_in_group("player_group")
-		player_group.is_interacting = true
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE # Release mouse
-		GUI.show()
-		GUI_viewport.add_child(minitask)
-		print("player interacted with minitask")
-
-# player quits window:
-		if GUI_window != null:
-			GUI_window.emit_signal("close_requested")
+	GUI.show()
+	GUI_viewport.add_child(minitask)
+	print("player interacted with minitask")
+	if GUI_window != null:
+		GUI_window.emit_signal("close_requested")
+		Global.taskMode = false
