@@ -33,6 +33,10 @@ theme_override_font_sizes/font_size = 80
 text = "LOCKDOWN"
 horizontal_alignment = 1
 
+[node name="LineBreak1" type="Control" parent="Menubuttons" unique_id=783837631]
+custom_minimum_size = Vector2(5, 20)
+layout_mode = 2
+
 [node name="Singleplayer" type="Button" parent="Menubuttons" unique_id=1285068060]
 layout_mode = 2
 theme = ExtResource("1_yqorp")
@@ -43,7 +47,7 @@ layout_mode = 2
 theme = ExtResource("1_yqorp")
 text = "Host"
 
-[node name="LineBreak" type="Control" parent="Menubuttons" unique_id=783837631]
+[node name="LineBreak2" type="Control" parent="Menubuttons" unique_id=335253692]
 custom_minimum_size = Vector2(5, 20)
 layout_mode = 2
 
@@ -58,7 +62,7 @@ layout_mode = 2
 theme = ExtResource("1_yqorp")
 text = "Join"
 
-[node name="AnotherLineBreak" type="Control" parent="Menubuttons" unique_id=335253692]
+[node name="LineBreak3" type="Control" parent="Menubuttons" unique_id=1336720523]
 custom_minimum_size = Vector2(5, 20)
 layout_mode = 2
 

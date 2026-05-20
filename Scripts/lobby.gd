@@ -21,7 +21,7 @@ var teams = {} # peer_id -> "Cop" or "Robber"
 var playercount = 0
 const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
-var debWin = preload("res://Scenes/Debug.tscn")
+var debWin = preload("res://Menus/Debug.tscn")
 
 func _on_host_button_pressed():
 
