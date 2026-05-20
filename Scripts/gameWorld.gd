@@ -54,6 +54,7 @@ func _ready() -> void:
 	GUI.hide()
 	print(Input.get_joy_name(0))
 	get_viewport().set_embedding_subwindows(false)
+	Global.recreatePlayers()
 	#var DebugPanel = debWin.instantiate()
 	#add_child(DebugPanel)
 	#DebugPanel.visible = true

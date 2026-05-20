@@ -161,10 +161,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.373262, 2, 0)
 [node name="Marker3D" type="Marker3D" parent="SpawnPoints2/Cops" unique_id=106706201]
 transform = Transform3D(0.2774824, 0, 0.96073073, 0, 1, 0, -0.96073073, 0, 0.2774824, 0, -2, 0)
 
-[node name="SpawnPoints" type="MultiplayerSpawner" parent="." unique_id=657898112]
-_spawnable_scenes = PackedStringArray("uid://c3ffql15mo0aj")
-spawn_path = NodePath("..")
-
 [node name="Enemy" parent="." unique_id=204833997 instance=ExtResource("4_pqjlb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.007420063, 3.03476, 0.74423)
 
@@ -464,4 +460,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.676233, 2.624999, 5.997730
 
 [connection signal="body_entered" from="InteractableTest/Area3D" to="." method="_GUI_window_open"]
 [connection signal="close_requested" from="GUIwindow" to="GUIwindow" method="_GUI_window_close"]
-[connection signal="spawned" from="SpawnPoints" to="." method="_on_multiplayer_spawner_spawned"]
