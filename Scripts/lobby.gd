@@ -21,6 +21,7 @@ var teams = {} # peer_id -> "Cop" or "Robber"
 var playercount = 0
 const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
+
 var debWin = preload("res://Scenes/Debug.tscn")
 
 func _on_host_button_pressed():
@@ -83,6 +84,11 @@ func _ready() -> void:
 	Global.totalValue = 0
 	GUI.hide()
 	print(Input.get_joy_name(0))
+	get_viewport().set_embedding_subwindows(false)
+	
+	#var DebugPanel = debWin.instantiate()
+	#add_child(DebugPanel)
+	#DebugPanel.visible = true
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("quit"):
