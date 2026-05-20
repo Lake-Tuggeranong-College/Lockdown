@@ -14,12 +14,14 @@ flip_faces = true
 [node name="DeathCube" type="Node3D" unique_id=145201229]
 script = ExtResource("1_4g4tt")
 
-[node name="Area3D" type="Area3D" parent="." unique_id=193981294]
+[node name="DeathCubeArea" type="Area3D" parent="." unique_id=193981294]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1044854174]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathCubeArea" unique_id=1044854174]
 transform = Transform3D(1.1827568, 0, 0, 0, 1.1827568, 0, 0, 0, 1.1827568, 0, 0, 0)
 shape = SubResource("BoxShape3D_u72bo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=7468992]
 transform = Transform3D(1.1702365, 0, 0, 0, 1.1702365, 0, 0, 0, 1.1702365, 0, 0, 0)
 mesh = SubResource("BoxMesh_7aftq")
+
+[connection signal="body_entered" from="DeathCubeArea" to="." method="_on_death_cube_area_body_entered"]
