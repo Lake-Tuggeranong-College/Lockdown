@@ -211,6 +211,11 @@ func _on_guitasktest_pressed() -> void:
 	get_tree().change_scene_to_file("res://gameMechanics/hacking_minitask.tscn")
 
 
+# GUI window code :
+
+var minitask = preload("res://gameMechanics/hacking_minitask.tscn").instantiate()
+var active_instance: Node = null
+
 func _GUI_window_open(_body: Player) -> void:
 	var minitask = preload("res://gameMechanics/hacking_minitask.tscn").instantiate()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE # Release mouse
@@ -225,3 +230,20 @@ func _GUI_window_open(_body: Player) -> void:
 
 func _on_Quit_button_pressed() -> void:
 	get_tree().quit()
+	if _body.is_multiplayer_authority():
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE # Release mouse
+		Global.taskMode = true
+		GUI.show()
+		GUI_viewport.add_child(minitask)
+		print("player interacted with minitask")
+		if GUI_window != null:
+			swap_to_new_instance()
+			GUI_window.emit_signal("close_requested")
+			Global.taskMode = false
+
+func swap_to_new_instance():
+	if is_instance_valid(active_instance):
+		active_instance.queue_free()
+		var new_instance = minitask.instantiate()
+		add_child(new_instance)
+		active_instance = new_instance
