@@ -28,6 +28,7 @@ var isCrouching : bool = false
 var currentRotation : float
 var cameraOffset : Vector3
 var sceneChanged = true
+var spawnpoint
 
 var gravity = 12
 var stamina = 100
@@ -54,6 +55,7 @@ func _ready():
 
 	CROUCH_SHAPECAST.add_exception(self)
 	Global.isMainMenu = false  
+
 
 func _unhandled_input(event: InputEvent) -> void:
 
@@ -196,6 +198,7 @@ func take_damage(damage, type, team):
 
 		if Global.playerHealth <= 0:
 			Global.playerHealth = 100
+			global_position = spawnpoint.pick_random().global_position 
 
 
 func updatePlayerModel():

@@ -134,8 +134,10 @@ func spawn_player(id, team):
 
 	if team == "Cop":
 		spawn_point = cop_spawns.pick_random()
+		Global.player.spawnpoint = cop_spawns
 	else:
 		spawn_point = robber_spawns.pick_random()
+		Global.player.spawnpoint = robber_spawns
 
 	player.global_position = spawn_point.global_position
 
