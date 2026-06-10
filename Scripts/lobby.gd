@@ -237,7 +237,6 @@ func _GUI_window_open(_body: Player) -> void:
 
 
 func _on_Quit_button_pressed() -> void:
-	get_tree().quit()
 	if player.is_multiplayer_authority():
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE # Release mouse
 		Global.taskMode = true
@@ -258,3 +257,6 @@ func swap_to_new_instance():
 		var new_instance = minitask.instantiate()
 		add_child(new_instance)
 		active_instance = new_instance
+
+func _on_exit_game_pressed() -> void:
+	get_tree().quit()
