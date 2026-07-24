@@ -13,8 +13,13 @@ func _process(delta: float) -> void:
 
 func becomeDangerous(): 
 	var material = $MeshInstance3D.get_active_material(0)
-	material.albedo_color = Color(1.0, 0.0, 0.741, 1.0)
-	dangerous = true             
+	
+	if dangerous == true:
+		dangerous = false
+		material.albedo_color = Color(0.133, 1.0, 0.0, 1.0)      
+	elif dangerous == false:
+		dangerous = true   
+		material.albedo_color = Color(1.0, 0.0, 0.741, 1.0)          
 
 func _on_death_cube_area_body_entered(body: Node3D) -> void:
 	if dangerous == true:
